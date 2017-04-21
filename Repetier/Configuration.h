@@ -180,13 +180,13 @@ pins. Separate multiple GCODEs with \n
 /** \brief Number of steps for a 1mm move in x direction.
 For xy gantry use 2*belt moved!
 Overridden if EEPROM activated. */
-#define XAXIS_STEPS_PER_MM 98.425196
+#define XAXIS_STEPS_PER_MM 80
 /** \brief Number of steps for a 1mm move in y direction.
 For xy gantry use 2*belt moved!
 Overridden if EEPROM activated.*/
-#define YAXIS_STEPS_PER_MM 98.425196
+#define YAXIS_STEPS_PER_MM 80
 /** \brief Number of steps for a 1mm move in z direction  Overridden if EEPROM activated.*/
-#define ZAXIS_STEPS_PER_MM 2560
+#define ZAXIS_STEPS_PER_MM 4000
 #endif
 
 // ##########################################################################################
@@ -267,7 +267,7 @@ controlled by settings in extruder 0 definition. */
 #define EXT0_STEP_PIN E0_STEP_PIN
 #define EXT0_DIR_PIN E0_DIR_PIN
 // set to false/true for normal / inverse direction
-#define EXT0_INVERSE true
+#define EXT0_INVERSE false
 #define EXT0_ENABLE_PIN E0_ENABLE_PIN
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
 #define EXT0_ENABLE_ON 0
@@ -810,29 +810,29 @@ PRINTER_MODE_CNC 2
 use a mechanical endstop connected with GND. Set value to false for no pull-up
 on this endstop.
 */
-#define ENDSTOP_PULLUP_X_MIN false
-#define ENDSTOP_PULLUP_Y_MIN false
-#define ENDSTOP_PULLUP_Z_MIN false
+#define ENDSTOP_PULLUP_X_MIN true
+#define ENDSTOP_PULLUP_Y_MIN true
+#define ENDSTOP_PULLUP_Z_MIN true
 #define ENDSTOP_PULLUP_X_MAX true
 #define ENDSTOP_PULLUP_Y_MAX true
-#define ENDSTOP_PULLUP_Z_MAX false
+#define ENDSTOP_PULLUP_Z_MAX true
 
 //set to true to invert the logic of the endstops
-#define ENDSTOP_X_MIN_INVERTING true
-#define ENDSTOP_Y_MIN_INVERTING true
-#define ENDSTOP_Z_MIN_INVERTING true
+#define ENDSTOP_X_MIN_INVERTING false
+#define ENDSTOP_Y_MIN_INVERTING false
+#define ENDSTOP_Z_MIN_INVERTING false
 #define ENDSTOP_X_MAX_INVERTING false
 #define ENDSTOP_Y_MAX_INVERTING false
-#define ENDSTOP_Z_MAX_INVERTING true
+#define ENDSTOP_Z_MAX_INVERTING false
 
 // Set the values true where you have a hardware endstop. The Pin number is taken from pins.h.
 
 #define MIN_HARDWARE_ENDSTOP_X true
 #define MIN_HARDWARE_ENDSTOP_Y true
-#define MIN_HARDWARE_ENDSTOP_Z false
+#define MIN_HARDWARE_ENDSTOP_Z true
 #define MAX_HARDWARE_ENDSTOP_X false
 #define MAX_HARDWARE_ENDSTOP_Y false
-#define MAX_HARDWARE_ENDSTOP_Z true
+#define MAX_HARDWARE_ENDSTOP_Z false
 
 //If your axes are only moving in one direction, make sure the endstops are connected properly.
 //If your axes move in one direction ONLY when the endstops are triggered, set ENDSTOPS_INVERTING to true here
@@ -849,7 +849,7 @@ on this endstop.
 // Disables axis when it's not being used.
 #define DISABLE_X false
 #define DISABLE_Y false
-#define DISABLE_Z false
+#define DISABLE_Z true
 #define DISABLE_E false
 /* If you want to keep z motor running on stepper timeout, remove comments below.
   This may be useful if your z bed moves when motors are disabled. Will still
@@ -867,7 +867,7 @@ on this endstop.
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
-#define Z_HOME_DIR 1
+#define Z_HOME_DIR -1
 
 // Delta robot radius endstop
 #define max_software_endstop_r true
@@ -889,9 +889,9 @@ on this endstop.
 
 // For higher precision you can reduce the speed for the second test on the endstop
 // during homing operation. The homing speed is divided by the value. 1 = same speed, 2 = half speed
-#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 2
+#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 3
+#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 3
+#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 3
 
 // When you have several endstops in one circuit you need to disable it after homing by moving a
 // small amount back. This is also the case with H-belt systems.
@@ -908,9 +908,9 @@ on this endstop.
 // For delta robot Z_MAX_LENGTH is the maximum travel of the towers and should be set to the distance between the hotend
 // and the platform when the printer is at its home position.
 // If EEPROM is enabled these values will be overridden with the values in the EEPROM
-#define X_MAX_LENGTH 165
-#define Y_MAX_LENGTH 175
-#define Z_MAX_LENGTH 116.820
+#define X_MAX_LENGTH 190
+#define Y_MAX_LENGTH 170
+#define Z_MAX_LENGTH 300
 // Coordinates for the minimum axis. Can also be negative if you want to have the bed start at 0 and the printer can go to the left side
 // of the bed. Maximum coordinate is given by adding the above X_MAX_LENGTH values.
 #define X_MIN_POS 0
@@ -1057,9 +1057,9 @@ Mega. Used only for nonlinear systems like delta or tuga. */
     The axis order in all axis related arrays is X, Y, Z
      Overridden if EEPROM activated.
     */
-#define MAX_FEEDRATE_X 200
-#define MAX_FEEDRATE_Y 200
-#define MAX_FEEDRATE_Z 5
+#define MAX_FEEDRATE_X 150
+#define MAX_FEEDRATE_Y 150
+#define MAX_FEEDRATE_Z 3
 
 /** Home position speed in mm/s. Overridden if EEPROM activated. */
 #define HOMING_FEEDRATE_X 80
@@ -1119,12 +1119,12 @@ additional stepper interrupts with all it's overhead. As a result you can go as 
 /** If you need frequencies off more then 30000 you definitely need to enable this. If you have only 1/8 stepping
 enabling this may cause to stall your moves when 20000Hz is reached.
 */
-#define ALLOW_QUADSTEPPING 1
+#define ALLOW_QUADSTEPPING 0
 /** If you reach STEP_DOUBLER_FREQUENCY the firmware will do 2 or 4 steps with nearly no delay. That can be too fast
 for some printers causing an early stall.
 
 */
-#define DOUBLE_STEP_DELAY 0 // time in microseconds
+#define DOUBLE_STEP_DELAY 1 // time in microseconds
 
 /** If the firmware is busy, it will send a busy signal to host signaling that
  everything is fine and it only takes a bit longer to finish. That way the 
@@ -1136,14 +1136,14 @@ for some printers causing an early stall.
 /** \brief X, Y, Z max acceleration in mm/s^2 for printing moves or retracts. Make sure your printer can go that high!
  Overridden if EEPROM activated.
 */
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 1000
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 1000
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 180
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 180
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 10
 
 /** \brief X, Y, Z max acceleration in mm/s^2 for travel moves.  Overridden if EEPROM activated.*/
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 2000
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 2000
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 180
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 180
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 10
 /** If you print on a moving bed, it can become more shaky the higher and bigger
  your print gets. Therefore it might be helpfull to reduce acceleration with
  increasing print height. You can define here how acceleration should change.
@@ -1181,7 +1181,7 @@ Corner can be printed with full speed of 50 mm/s
 
 Overridden if EEPROM activated.
 */
-#define MAX_JERK 20.0
+#define MAX_JERK 10.0
 #define MAX_ZJERK 0.3
 
 /** \brief Number of moves we can cache in advance.
@@ -1547,7 +1547,7 @@ Always hard to say since the other angle is 89° in this case!
 
 /** Set to false to disable SD support: */
 #ifndef SDSUPPORT  // Some boards have SD support on board. These define the values already in pins.h
-#define SDSUPPORT false
+#define SDSUPPORT true
 // Uncomment to enable or change card detection pin. With card detection the card is mounted on insertion.
 #undef SDCARDDETECT
 #define SDCARDDETECT -1
@@ -1635,7 +1635,7 @@ The following settings override uiconfig.h!
 24 or CONTROLLER_ZONESTAR = Zonestar P802M with LCD 20x4 and 5 ADC button keypad
 */
 
-#define FEATURE_CONTROLLER NO_CONTROLLER
+#define FEATURE_CONTROLLER 10
 
 /* You can have one keypad connected via single analog pin as seen on
  some printers with Melzi V2.0 board, 20x4 LCD and 5 buttons keypad. This must be
@@ -1647,17 +1647,17 @@ Select the languages to use. On first startup user can select
 the language from a menu with activated languages. In Configuration->Language
 the language can be switched any time. */
 #define LANGUAGE_EN_ACTIVE 1 // English
-#define LANGUAGE_DE_ACTIVE 1 // German
-#define LANGUAGE_NL_ACTIVE 1 // Dutch
-#define LANGUAGE_PT_ACTIVE 1 // Brazilian Portuguese
-#define LANGUAGE_IT_ACTIVE 1 // Italian
-#define LANGUAGE_ES_ACTIVE 1 // Spanish
-#define LANGUAGE_FI_ACTIVE 1 // Finnish
-#define LANGUAGE_SE_ACTIVE 1 // Swedish
-#define LANGUAGE_FR_ACTIVE 1 // French
-#define LANGUAGE_CZ_ACTIVE 1 // Czech
-#define LANGUAGE_PL_ACTIVE 1 // Polish
-#define LANGUAGE_TR_ACTIVE 1 // Turkish
+#define LANGUAGE_DE_ACTIVE 0 // German
+#define LANGUAGE_NL_ACTIVE 0 // Dutch
+#define LANGUAGE_PT_ACTIVE 0 // Brazilian Portuguese
+#define LANGUAGE_IT_ACTIVE 0 // Italian
+#define LANGUAGE_ES_ACTIVE 0 // Spanish
+#define LANGUAGE_FI_ACTIVE 0 // Finnish
+#define LANGUAGE_SE_ACTIVE 0 // Swedish
+#define LANGUAGE_FR_ACTIVE 0 // French
+#define LANGUAGE_CZ_ACTIVE 0 // Czech
+#define LANGUAGE_PL_ACTIVE 0 // Polish
+#define LANGUAGE_TR_ACTIVE 0 // Turkish
 
 /* Some displays loose their settings from time to time. Try uncommenting the
 auto-repair function if this is the case. It is not supported for all display
