@@ -1635,7 +1635,7 @@ The following settings override uiconfig.h!
 24 or CONTROLLER_ZONESTAR = Zonestar P802M with LCD 20x4 and 5 ADC button keypad
 */
 
-#define FEATURE_CONTROLLER 10
+#define FEATURE_CONTROLLER 11
 
 /* You can have one keypad connected via single analog pin as seen on
  some printers with Melzi V2.0 board, 20x4 LCD and 5 buttons keypad. This must be
